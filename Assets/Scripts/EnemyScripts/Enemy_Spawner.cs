@@ -9,11 +9,18 @@ public class Enemy_Spawner : MonoBehaviour {
 
 	//Enemy Spawner Number
 	public GameObject enemy;
-	public int numOfEnemies = 50;
+
+	//Array for enemies
+	//public int[] enemies;
+
+
 	public float spawnRate; // How fast the enemies spawn
 
 
-	public bool isSpawning;
+
+
+
+	//public bool isSpawning;
 
 
 	// Use this for initialization
@@ -43,12 +50,20 @@ public class Enemy_Spawner : MonoBehaviour {
 	IEnumerator spawnCounter()
 	{
 
+
+
 		while (true) //Since this is always "True" enemies will continue to spawn
 		{
 			yield return new WaitForSeconds (spawnRate);
 
-			//Instantiating the Enemy in the spawner
-			Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
+
+
+				//Instantiating the Enemy in the spawner
+				//Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
+
+				
+
+
 
 		}
 

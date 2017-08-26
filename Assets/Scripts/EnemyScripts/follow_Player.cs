@@ -1,30 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class follow_Player : MonoBehaviour {
 
 
 	public float chaseSpeed;
-	//public float rotSpeed;
+	public float rotSpeed;
 
 	public Transform player;
 
-	//private Rigidbody rb;
+	NavMeshAgent agent;
 
 
 
 	// Use this for initialization
 	void Start () {
-		//brb = GetComponent<Rigidbody> ();
+		
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Awake () {
 
-		Vector3 toTarget = player.position - transform.position;
+		player = GameObject.FindGameObjectWithTag ("Player").transform; //Find the Gameobject with the correct tag name
+		agent = GetComponent<NavMeshAgent> ();
+		agent.SetDestination (player.position); //= player.position;
 
-		transform.Translate (toTarget * chaseSpeed * Time.deltaTime);
+		//We want the agent to stop within a range of the player
+
 
 	}
+
+	void Update()
+	{
+		agent.SetDestination (player.position);
+
+	}
+
 }

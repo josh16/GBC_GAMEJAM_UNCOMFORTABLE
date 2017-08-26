@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Health : MonoBehaviour {
+public class Enemy_Health : MonoBehaviour {
 
-	//Health Variables
-	public float maxHealth;
-	public float currentHealth;
-	private float dmg;
-
-
-
-
-
+	public float maxHealth = 100;
+	public float currentHealth = 100;
+	private float dmg = 20f;
 
 
 
@@ -23,34 +17,28 @@ public class Player_Health : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
-
+		
 	}
 
 
 
-
+	//Collision with Bullet
 	void OnTriggerEnter(Collider other)
 	{
-
-		if (other.gameObject.tag == "Spider") 
+		if (other.gameObject.tag == "Bullet")
 		{
 			if (currentHealth <= maxHealth) 
 			{
+				Debug.Log ("Im hit!");
 				currentHealth -= dmg;
 			}
 
-			if (currentHealth <= 0) 
+			if(currentHealth <= 0)
 			{
 				Destroy (this.gameObject);
-
-				//Disable player movement
-				//Font pops up and says "Player is dead"
-				//
-
 			}
+		
+
 		}
 	}
-
 }
