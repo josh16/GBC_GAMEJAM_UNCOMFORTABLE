@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Health : MonoBehaviour {
 
 	//Health Variables
 	public float maxHealth;
 	public float currentHealth;
-	private float dmg = 5;
+	private float dmg = 5.0f;	
 
+	public Slider healthBarSlider; // reference to slider on player
 
 
 
@@ -36,6 +38,7 @@ public class Player_Health : MonoBehaviour {
 			if (currentHealth <= maxHealth) 
 			{
 				currentHealth -= dmg;
+				healthBarSlider.value -= 0.05f;
 			}
 
 			if (currentHealth <= 0) 
