@@ -34,13 +34,12 @@ public class Bullet_Controller : MonoBehaviour {
 			// ***** WORK IN PROGRESS *****
 		}
 
-		if (other.gameObject.tag == "Barrel") 
-		{
-			Destroy (this.gameObject);
-			// ***** WORK IN PROGRESS *****
+	}
 
-		}
-
+	//Collision on walls, enemies, objects to destroy this bullet
+	void OnCollisionEnter(Collision collision)
+	{
+		Destroy (this.gameObject);
 	}
 
 }
