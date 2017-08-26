@@ -25,6 +25,7 @@ public class Enemy_Health : MonoBehaviour {
 	//Collision with Bullet
 	void OnTriggerEnter(Collider other)
 	{
+		//Colliding with Bullet
 		if (other.gameObject.tag == "Bullet")
 		{
 			if (currentHealth <= maxHealth) 
@@ -35,9 +36,18 @@ public class Enemy_Health : MonoBehaviour {
 
 			if(currentHealth <= 0)
 			{
-				Destroy (this.gameObject);
+				
 			}
 		
+		}
+	
+		//Colliding with Player
+		if (other.gameObject.tag == "Player") 
+		{
+			Destroy (this.gameObject);
+			Debug.Log ("Touched player!");
+
+			//Instantiate/Invoke particle effect
 
 		}
 	}

@@ -10,8 +10,9 @@ public class Enemy_Spawner : MonoBehaviour {
 	//Enemy Spawner Number
 	public GameObject enemy;
 
-	//Array for enemies
-	//public int[] enemies;
+
+	//Lists for enemies
+	public List<GameObject> Enemies = new List<GameObject>();
 
 
 	public float spawnRate; // How fast the enemies spawn
@@ -26,6 +27,9 @@ public class Enemy_Spawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Enemies.Capacity = 10;
+
+
 		StartCoroutine ("spawnCounter");
 
 	}
@@ -34,41 +38,46 @@ public class Enemy_Spawner : MonoBehaviour {
 	void Update () {
 
 
-
 	}
 
-
-
-	void Awake()
-	{
-		
-	}
 
 
 
 	//Spawn Counter
 	IEnumerator spawnCounter()
 	{
-
-
-
-		while (true) //Since this is always "True" enemies will continue to spawn
+		for (int i = 0; Enemies.Capacity <= 10; i++)
 		{
+
 			yield return new WaitForSeconds (spawnRate);
 
+			//Instantiating the Enemy in the spawner
+			spawnEnemies();
 
-
-				//Instantiating the Enemy in the spawner
-				//Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
-
-				
-
-
+			Enemies.Remove (enemy); // Remove enemy from list
 
 		}
 
 
 
+		//while (true) //Since this is always "True" enemies will continue to spawn
+		//{
+		//	yield return new WaitForSeconds (spawnRate);
+				
+				//Instantiating the Enemy in the spawner
+		//		Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
+
+		//}
+
+	
+
+	}
+
+
+
+	void spawnEnemies()
+	{
+		Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
 	}
 
 

@@ -7,10 +7,7 @@ public class Player_Health : MonoBehaviour {
 	//Health Variables
 	public float maxHealth;
 	public float currentHealth;
-	private float dmg;
-
-
-
+	private float dmg = 5;
 
 
 
