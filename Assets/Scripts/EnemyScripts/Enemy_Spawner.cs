@@ -11,21 +11,28 @@ public class Enemy_Spawner : MonoBehaviour {
 	public GameObject enemy;
 
 
-	//Lists for enemies
+	//Lists for keeping track on the amount of Enemies
 	public List<GameObject> Enemies = new List<GameObject>();
 
 
-	public float spawnRate; // How fast the enemies spawn
+
+	// How fast the enemies spawn
+	public float spawnRate; 
 
 
 
 
 
-	//public bool isSpawning;
+	public bool isSpawning;
 
 
 	// Use this for initialization
 	void Start () {
+
+	//Amount of Enemies remaining
+	
+		isSpawning = true;
+
 
 		Enemies.Capacity = 10;
 
@@ -42,7 +49,6 @@ public class Enemy_Spawner : MonoBehaviour {
 
 
 
-
 	//Spawn Counter
 	IEnumerator spawnCounter()
 	{
@@ -55,6 +61,11 @@ public class Enemy_Spawner : MonoBehaviour {
 			spawnEnemies();
 
 			Enemies.Remove (enemy); // Remove enemy from list
+
+			if (Enemies.Count == 0) 
+			{
+				isSpawning = false;
+			}
 
 		}
 
@@ -75,10 +86,49 @@ public class Enemy_Spawner : MonoBehaviour {
 
 
 
+
 	void spawnEnemies()
 	{
-		Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
+		
+		//Enemies will only spawn as long as this boolean is set to true
+		if (isSpawning == true) 
+		{
+			Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
+		}
+
 	}
 
+
+
+
+
+	/*
+	void spawnEnemies(int count)
+	{
+		for (int i = 0; i < count; i++) 
+		{
+			Enemies.Add(GameObject.Instantiate(enemy, spawnPoint.position, spawnPoint.rotation));
+		}
+		//Instantiate(enemy,spawnPoint.position,spawnPoint.rotation);
+
+	}
+
+
+
+	void allDead()
+	{
+		if (Enemies.Contains (enemy)) 
+		{
+			Enemies.Remove (enemy);
+			if (Enemies.Count == 0) 
+			{
+				Debug.Log("no more enemies!");
+			}
+		}
+	}
+
+	
+	
+*/
 
 }

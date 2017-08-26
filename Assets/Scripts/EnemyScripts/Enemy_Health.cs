@@ -8,6 +8,10 @@ public class Enemy_Health : MonoBehaviour {
 	public float currentHealth = 100;
 	private float dmg = 20f;
 
+	public GameObject greenDeathFire;
+	public Transform particleSpawner;
+
+
 
 
 	// Use this for initialization
@@ -36,7 +40,7 @@ public class Enemy_Health : MonoBehaviour {
 
 			if(currentHealth <= 0)
 			{
-				
+				Destroy (this.gameObject);
 			}
 		
 		}
@@ -48,7 +52,23 @@ public class Enemy_Health : MonoBehaviour {
 			Debug.Log ("Touched player!");
 
 			//Instantiate/Invoke particle effect
+			Instantiate(greenDeathFire, particleSpawner.position,particleSpawner.rotation);
+			StartCoroutine ("particleTimer");
+
+
+			
 
 		}
 	}
+
+
+
+	IEnumerator particleTimer()
+	{
+		yield return new WaitForSeconds(4);
+		Destroy (greenDeathFire);
+		Debug.Log ("Paticle system turning off!");
+	}
+	
+
 }
