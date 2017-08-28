@@ -19,7 +19,7 @@ public class Enemy_Spawner : MonoBehaviour {
 	// How fast the enemies spawn
 	public float spawnRate; 
 
-
+	public string levelName;
 
 
 
@@ -34,7 +34,7 @@ public class Enemy_Spawner : MonoBehaviour {
 		isSpawning = true;
 
 
-		Enemies.Capacity = 10;
+		Enemies.Capacity = 50;
 
 
 		StartCoroutine ("spawnCounter");
@@ -52,7 +52,7 @@ public class Enemy_Spawner : MonoBehaviour {
 	//Spawn Counter
 	IEnumerator spawnCounter()
 	{
-		for (int i = 0; Enemies.Capacity <= 10; i++)
+		for (int i = 0; Enemies.Capacity <= 50; i++)
 		{
 
 			yield return new WaitForSeconds (spawnRate);
@@ -65,6 +65,7 @@ public class Enemy_Spawner : MonoBehaviour {
 			if (Enemies.Count == 0) 
 			{
 				isSpawning = false;
+				Application.LoadLevel (levelName);
 			}
 
 		}

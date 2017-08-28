@@ -13,21 +13,14 @@ public class Player_Health : MonoBehaviour {
 
 	public Slider healthBarSlider; // reference to slider on player
 
+	//Level name 
+	public string levelName;
 
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 
-
-
 	}
-
 
 
 
@@ -44,7 +37,11 @@ public class Player_Health : MonoBehaviour {
 
 			if (currentHealth <= 0) 
 			{
-				Destroy (this.gameObject);
+				StartCoroutine ("deathDelay");
+				Application.LoadLevel (levelName);
+			
+
+
 
 				//Disable player movement
 				//Font pops up and says "Player is dead"
@@ -68,6 +65,16 @@ public class Player_Health : MonoBehaviour {
 			}
 		}
 
+
+	}
+
+
+
+	IEnumerator deathDelay ()
+	{
+
+		yield return new WaitForSeconds (2f);
+		Destroy (this.gameObject);
 
 	}
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy_Health : MonoBehaviour {
 
@@ -14,9 +15,16 @@ public class Enemy_Health : MonoBehaviour {
 
 
 
+	//Enemy Count/Remaining
+	public GUIText enemyText;
+	private int enemyCounter;
+
+
 	// Use this for initialization
 	void Start () {
-		
+
+		enemyCounter = 50; // Amount of enemies
+	
 	}
 	
 	// Update is called once per frame
@@ -41,6 +49,10 @@ public class Enemy_Health : MonoBehaviour {
 			if(currentHealth <= 0)
 			{
 				Destroy (this.gameObject);
+				UpdateEnemyCounter();
+				Instantiate(greenDeathFire, particleSpawner.position,particleSpawner.rotation);
+
+
 			}
 		
 		}
@@ -70,5 +82,20 @@ public class Enemy_Health : MonoBehaviour {
 		Debug.Log ("Paticle system turning off!");
 	}
 	
+
+
+	public void enemyCount(int enemyScoreUpdate)
+	{
+		enemyCounter -= enemyScoreUpdate;
+		UpdateEnemyCounter ();
+	}
+
+
+	void UpdateEnemyCounter()
+	{
+		enemyText.text = "ENEMIES: " + enemyCounter;
+		Debug.Log (" -1!!!");
+	}
+
 
 }

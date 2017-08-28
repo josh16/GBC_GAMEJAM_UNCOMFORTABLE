@@ -18,6 +18,8 @@ public class Weapon_Controller : MonoBehaviour {
 
 
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -34,7 +36,9 @@ public class Weapon_Controller : MonoBehaviour {
 			if (shootingCounter <= 0) {
 				shootingCounter = timeBetweenShots; //Reset the shooting of bullets
 				Bullet_Controller newBullet = Instantiate (bullet, firePointSpawner.position, firePointSpawner.rotation) as Bullet_Controller;
+			
 				newBullet.Speed = bulletSpeed; // Set the gameObjects speed
+			
 			}
 		} else {
 			shootingCounter = 0; // Set the counter back to zero

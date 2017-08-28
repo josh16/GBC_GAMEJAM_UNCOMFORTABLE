@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class Player_Movement : MonoBehaviour {
 
 	//Public variables
@@ -11,6 +13,13 @@ public class Player_Movement : MonoBehaviour {
 
 	//Reference to Player_Health script
 	//public Player_Health myHealth;
+
+
+	//Audio clip for gun shots
+	//public AudioClip gunShot;
+	//public AudioSource source;
+
+	//public Transform soundSource;
 
 
 	//Reference to Weapon_Controller script
@@ -34,6 +43,8 @@ public class Player_Movement : MonoBehaviour {
 
 		rbody = GetComponent<Rigidbody> ();
 		mainCamera = FindObjectOfType<Camera> ();
+		//source = GetComponent<AudioSource> ();
+
 
 
 	}
@@ -62,11 +73,26 @@ public class Player_Movement : MonoBehaviour {
 
 		}
 
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			thePlayersGun.isFiring = true;
+			//source.Play();
+		}
+
+		if (Input.GetKeyUp(KeyCode.Space)) {
+			thePlayersGun.isFiring = false;
+
+		}
+
 
 		//(**** KEYBOARD/MOUSE ****)
 		if (Input.GetMouseButtonDown (0)) //Holding down button fires bullets
 		{
 			thePlayersGun.isFiring = true;
+			//source.Play ();
+			//AudioSource.PlayClipAtPoint (gunShot,soundSource);
+			//PlayClipAtPoint(gunShot,soundSource);
+
+
 		}
 
 		if (Input.GetMouseButtonUp (0)) // Once button is released, bullets stop firing
